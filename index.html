@@ -7,138 +7,229 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --ink:        #1a1a1a;
-    --ink-mid:    #2e2e2e;
-    --ink-soft:   #4a4a4a;
-    --ink-muted:  #767676;
-    --rule:       #d0d0d0;
-    --rule-light: #e8e8e8;
-    --paper:      #f4f7ff;
-    --paper-warm: #eef3ff;
-    --white:      #ffffff;
-    --accent:     #0057ff;
-    --accent-mid: #0047d1;
-    --accent-pale:#eaeff6;
-    --green:      #1e6b3e;
-    --green-pale: #e8f4ed;
-    --mono:       'IBM Plex Mono', monospace;
-    --serif:      'IBM Plex Serif', serif;
-    --sans:       'IBM Plex Sans', sans-serif;
-    --shadow-sm:  0 1px 4px rgba(0,0,0,0.07);
-    --shadow:     0 2px 16px rgba(0,0,0,0.09);
-    --shadow-md:  0 4px 32px rgba(0,0,0,0.11);
+    /* ── Green palette (primary brand) ── */
+    --green-dark:  #0e4a25;
+    --green-main:  #1a7c3e;
+    --green-mid:   #145f30;
+    --green-pale:  #eaf5ee;
+    --green-soft:  #d0ecd9;
+
+    /* ── Gold accent ── */
+    --gold:        #C9A227;
+    --gold-mid:    #b08c1a;
+    --gold-pale:   #fdf5dc;
+
+    /* ── Navy (secondary dark) ── */
+    --navy:        #0b1f4d;
+    --navy-dark:   #071540;
+
+    /* ── Neutrals ── */
+    --ink:         #1a2e1e;
+    --ink-soft:    #3a5140;
+    --ink-muted:   #6b8070;
+    --rule:        #c4d9cb;
+    --rule-light:  #daeadf;
+    --paper:       #f4f9f6;
+    --paper-warm:  #eef7f1;
+    --white:       #ffffff;
+
+    /* ── Legacy compat (some old classes still use these) ── */
+    --accent:      #1a7c3e;
+    --accent-mid:  #145f30;
+    --accent-pale: #eaf5ee;
+
+    --mono:        'IBM Plex Mono', monospace;
+    --serif:       'IBM Plex Serif', serif;
+    --sans:        'IBM Plex Sans', sans-serif;
+    --shadow-sm:   0 1px 4px rgba(14,74,37,0.08);
+    --shadow:      0 2px 16px rgba(14,74,37,0.10);
+    --shadow-md:   0 4px 32px rgba(14,74,37,0.13);
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { font-family: var(--sans); color: var(--ink); background: var(--white); overflow-x: hidden; }
 
-  /* ─── TOPBAR ─── */
+  /* ══════════════════════════════════════
+     TIER 1 — TOP NAV BAR (white strip)
+  ══════════════════════════════════════ */
   .topbar {
-    background: var(--ink);
-    color: rgba(255,255,255,0.55);
-    font-family: var(--mono);
-    font-size: 11.5px;
-    padding: 8px 0;
-    letter-spacing: 0.3px;
+    background: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    font-family: var(--sans);
+    font-size: 13px;
+    padding: 0;
   }
   .topbar-inner {
-    max-width: 1280px; margin: 0 auto; padding: 0 40px;
-    display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+    max-width: 1280px; margin: 0 auto; padding: 0 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    height: 42px;
   }
-  .topbar-left { display: flex; gap: 28px; align-items: center; }
-  .topbar-right { display: flex; gap: 24px; align-items: center; }
-  .topbar a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color .2s; }
-  .topbar a:hover { color: rgba(255,255,255,0.9); }
-  .topbar-divider { width: 1px; height: 12px; background: rgba(255,255,255,0.15); }
-  .topbar-label { color: rgba(255,255,255,0.3); margin-right: 4px; }
+  .topbar-left { display: flex; gap: 6px; align-items: center; }
+  .topbar-right { display: flex; gap: 6px; align-items: center; }
 
-  /* ─── NAVBAR ─── */
+  .topbar a {
+    color: #333; text-decoration: none; font-size: 13px;
+    padding: 0 14px; height: 42px; display: flex; align-items: center;
+    transition: color .18s, background .18s;
+    font-weight: 500;
+  }
+  .topbar a:hover { color: #1a7c3e; background: #f5faf7; }
+  .topbar-divider { display: none; }
+  .topbar-label { display: none; }
+
+  /* Locate Us button */
+  .topbar-locate {
+    display: flex; align-items: center; gap: 6px;
+    color: #333; font-size: 13px; font-weight: 500;
+    text-decoration: none; padding: 0 12px;
+    height: 42px; transition: color .18s;
+  }
+  .topbar-locate:hover { color: #1a7c3e; }
+  .topbar-locate-icon {
+    width: 20px; height: 20px; background: #1a7c3e; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: white; flex-shrink: 0;
+  }
+
+  /* ══════════════════════════════════════
+     TIER 2 — BRAND BANNER (green strip)
+  ══════════════════════════════════════ */
   .navbar {
-    background: var(--white);
+    background: linear-gradient(135deg, #1a7c3e 0%, #145f30 100%);
     position: sticky; top: 0; z-index: 100;
-    border-bottom: 1px solid var(--rule);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
   }
   .navbar-inner {
-    max-width: 1280px; margin: 0 auto; padding: 0 40px;
-    display: flex; align-items: center; gap: 36px; height: 72px;
+    max-width: 1280px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; gap: 20px; height: 80px;
   }
-  .brand { display: flex; align-items: center; gap: 16px; text-decoration: none; flex-shrink: 0; }
-  .brand-logo{
-  width:52px;
-  height:52px;
-  background:white;
-  border-radius:14px;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 4px 14px rgba(0,0,0,0.08);
-}
 
-.brand-logo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+  /* Logo */
+  .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; flex-shrink: 0; }
+  .brand-logo {
+    width: 62px; height: 62px;
+    background: white;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.3), 0 4px 16px rgba(0,0,0,0.25);
+    flex-shrink: 0;
+  }
+  .brand-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Bank name block */
   .brand-text { display: flex; flex-direction: column; }
   .brand-name {
-    font-family: var(--serif);
-    font-size: 15px; font-weight: 700; color: var(--ink);
-    line-height: 1.2;
+    font-family: var(--sans);
+    font-size: 20px; font-weight: 800; color: #ffffff;
+    line-height: 1.15; letter-spacing: 0.2px;
   }
-  .brand-sub { font-family: var(--mono); font-size: 9.5px; color: var(--ink-muted); letter-spacing: 0.8px; text-transform: uppercase; margin-top: 2px; }
+  .brand-sub {
+    font-family: var(--sans); font-size: 12px; font-weight: 400;
+    color: rgba(255,255,255,0.88); margin-top: 2px;
+    letter-spacing: 0px;
+  }
 
-  nav { display: flex; align-items: center; gap: 0; flex: 1; }
-  .nav-link {
-    font-size: 13px; font-weight: 500; color: var(--ink-soft);
-    padding: 8px 14px; text-decoration: none;
-    transition: color .18s;
+  /* CTA buttons */
+  .navbar-cta { margin-left: auto; display: flex; gap: 10px; flex-shrink: 0; align-items: center; }
+  .btn-outline {
+    padding: 9px 20px;
+    border: 1.5px solid rgba(255,255,255,0.75);
+    color: #ffffff;
+    font-size: 13px; font-weight: 600; text-decoration: none;
+    transition: all .18s; background: transparent;
+    border-radius: 5px;
+    display: flex; align-items: center; gap: 7px;
     white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
   }
-  .nav-link:hover, .nav-link.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: white; }
+  .btn-primary {
+    padding: 9px 20px;
+    background: #e8700a;
+    color: #ffffff; font-size: 13px; font-weight: 700;
+    text-decoration: none;
+    transition: background .18s;
+    border-radius: 5px;
+    display: flex; align-items: center; gap: 7px;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.22);
+  }
+  .btn-primary:hover { background: #c75e05; }
+  .btn-icon { font-size: 14px; }
 
-  .nav-dropdown { position: relative; }
-  .nav-dropdown > .nav-link::after { content: ' ▾'; font-size: 9px; opacity: 0.5; }
-  .dropdown-menu {
-    position: absolute; top: calc(100% + 1px); left: 0;
-    background: var(--white);
-    border: 1px solid var(--rule);
-    border-top: 2px solid var(--accent);
-    min-width: 210px;
-    padding: 6px 0;
+  /* ══════════════════════════════════════
+     TIER 3 — SERVICE NAV BAR (dark green)
+  ══════════════════════════════════════ */
+  .service-navbar {
+    background: #145f30;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 2px solid #0e4a25;
+    position: sticky; top: 80px; z-index: 99;
+  }
+  .service-navbar-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 46px;
+  }
+  .service-nav-links { display: flex; align-items: center; gap: 0; flex: 1; }
+  .service-nav-link {
+    display: flex; align-items: center; gap: 6px;
+    color: rgba(255,255,255,0.88); font-size: 12.5px; font-weight: 500;
+    padding: 0 14px; height: 46px; text-decoration: none;
+    transition: background .15s, color .15s;
+    white-space: nowrap; border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .service-nav-link:first-child { border-left: 1px solid rgba(255,255,255,0.1); }
+  .service-nav-link:hover { background: rgba(255,255,255,0.12); color: #fff; }
+  .service-nav-link .sn-icon { font-size: 14px; }
+
+  /* Service nav dropdown */
+  .sn-dropdown { position: relative; }
+  .sn-dropdown > .service-nav-link::after { content: ' ▾'; font-size: 9px; opacity: 0.6; margin-left: 1px; }
+  .sn-dropdown-menu {
+    position: absolute; top: 100%; left: 0;
+    background: #145f30;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-top: 2px solid #f0a500;
+    min-width: 200px; padding: 4px 0;
     opacity: 0; pointer-events: none;
     transform: translateY(-4px);
     transition: opacity .15s, transform .15s;
-    z-index: 200;
-    box-shadow: var(--shadow-md);
+    z-index: 300;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.28);
   }
-  .nav-dropdown:hover .dropdown-menu { opacity: 1; pointer-events: all; transform: translateY(0); }
-  .dropdown-item {
-    display: block; padding: 9px 20px;
-    font-size: 12.5px; font-weight: 400; color: var(--ink-soft);
+  .sn-dropdown:hover .sn-dropdown-menu { opacity: 1; pointer-events: all; transform: translateY(0); }
+  .sn-dropdown-item {
+    display: block; padding: 9px 18px;
+    font-size: 12.5px; color: rgba(255,255,255,0.8);
     text-decoration: none; transition: background .12s, color .12s;
   }
-  .dropdown-item:hover { background: var(--accent-pale); color: var(--accent); }
+  .sn-dropdown-item:hover { background: rgba(255,255,255,0.1); color: #fff; }
 
-  .navbar-cta { margin-left: auto; display: flex; gap: 10px; flex-shrink: 0; }
-  .btn-outline {
-    padding: 8px 20px;
-    border: 1px solid var(--rule);
-    color: var(--ink-soft);
-    font-size: 13px; font-weight: 500; text-decoration: none;
-    transition: all .18s; background: var(--white);
+  /* Search box */
+  .sn-search {
+    display: flex; align-items: center;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 4px; overflow: hidden;
+    height: 30px; flex-shrink: 0;
   }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-primary {
-    padding: 8px 22px;
-    background: var(--accent);
-    color: var(--white); font-size: 13px; font-weight: 600;
-    text-decoration: none;
-    transition: background .18s;
+  .sn-search input {
+    background: transparent; border: none; outline: none;
+    color: white; font-size: 12px; padding: 0 10px; width: 190px;
+    font-family: var(--sans);
   }
-  .btn-primary:hover { background: var(--accent-mid); }
+  .sn-search input::placeholder { color: rgba(255,255,255,0.55); }
+  .sn-search-btn {
+    background: #f0a500; border: none; cursor: pointer;
+    width: 32px; height: 30px; display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 14px; transition: background .15s;
+    flex-shrink: 0;
+  }
+  .sn-search-btn:hover { background: #d4900a; }
+
+  /* Hide old nav (replaced by service-navbar) */
+  .navbar-inner nav { display: none; }
 
 /* ─── HERO ─── */
 
@@ -149,7 +240,7 @@
   align-items:center;
 
   background:
-    linear-gradient(rgba(228,232,240,0.68), rgba(228,232,240,0.68)),
+    linear-gradient(rgba(240,244,248,0.78), rgba(240,244,248,0.78)),
     url('bgimage.jpeg');
 
   background-size:100% auto;
@@ -177,26 +268,27 @@
 
 .hero-badge{
   display:inline-block;
-  background:#0057ff;
+  background: #1a7c3e;
   color:white;
-  padding:10px 18px;
+  padding:8px 18px;
   border-radius:50px;
-  font-size:13px;
+  font-size:12.5px;
   font-weight:600;
   margin-bottom:22px;
+  letter-spacing: 0.3px;
 }
 
 .modern-title{
-  font-size:58px;
-  line-height:1.05;
-  font-weight:700;
-  color:#0b1f4d;
+  font-size:54px;
+  line-height:1.06;
+  font-weight:800;
+  color:#0b1f3a;
   font-family:var(--sans);
   margin-bottom:18px;
 }
 
 .modern-desc{
-  font-size:17px;
+  font-size:16.5px;
   line-height:1.8;
   color:#3d4a63;
   max-width:520px;
@@ -210,26 +302,27 @@
 }
 
 .btn-hero-primary{
-  background:#0057ff;
+  background: #1a7c3e;
   color:white;
-  padding:14px 30px;
-  border-radius:14px;
+  padding:13px 30px;
+  border-radius:8px;
   text-decoration:none;
   font-size:14px;
   font-weight:600;
   transition:0.3s;
+  box-shadow: 0 4px 14px rgba(26,124,62,0.3);
 }
 
 .btn-hero-primary:hover{
-  background:#0047d1;
+  background: #145f30;
 }
 
 .btn-hero-outline{
   background:white;
-  color:#0057ff;
-  border:2px solid #0057ff;
-  padding:12px 28px;
-  border-radius:14px;
+  color: #1a7c3e;
+  border:2px solid #1a7c3e;
+  padding:11px 28px;
+  border-radius:8px;
   text-decoration:none;
   font-size:14px;
   font-weight:600;
@@ -237,75 +330,79 @@
 }
 
 .btn-hero-outline:hover{
-  background:#eef4ff;
+  background: #eaf5ee;
 }
 
 .hero-card{
-  width:360px;
-  background:#0b1220;
-  border-radius:24px;
-  padding:28px;
-  box-shadow:0 12px 40px rgba(0,0,0,0.22);
-  border:1px solid rgba(255,255,255,0.06);
+  width:340px;
+  background: #0b1f3a;
+  border-radius:20px;
+  padding:26px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.28);
+  border:1px solid rgba(255,255,255,0.08);
 }
 
 .hero-card-title{
-  font-size:15px;
+  font-size:14px;
   font-weight:700;
   color:white;
-  margin-bottom:20px;
+  margin-bottom:18px;
+  letter-spacing: 0.2px;
 }
 
 .quick-links{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:14px;
+  gap:12px;
 }
 
 .quick-link{
-  background:#f4f7ff;
-  border-radius:18px;
-  padding:18px 12px;
+  background: #f0f4ff;
+  border-radius:14px;
+  padding:16px 10px;
   text-align:center;
   transition:0.3s;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .quick-link:hover{
   transform:translateY(-4px);
-  background:#e8f0ff;
+  background: #dce6ff;
 }
 
 .quick-link-icon{
-  font-size:24px;
-  margin-bottom:8px;
+  font-size:22px;
+  margin-bottom:7px;
 }
 
 .quick-link-label{
-  font-size:13px;
+  font-size:12px;
   font-weight:600;
-  color:#0b1f4d;
+  color: #0b1f3a;
 }
 
 .hero-reg-info{
-  margin-top:22px;
-  padding-top:18px;
-  border-top:1px solid #e8ecf5;
+  margin-top:20px;
+  padding-top:16px;
+  border-top:1px solid rgba(255,255,255,0.1);
 }
 
 .hero-reg-badge{
-  background:#eef4ff;
-  color:#0057ff;
+  background: rgba(201,162,39,0.18);
+  color: #C9A227;
   font-size:10px;
   font-weight:700;
   padding:5px 10px;
   border-radius:30px;
+  letter-spacing: 0.5px;
 }
 
 .hero-reg-text{
   display:block;
   margin-top:10px;
   font-size:11px;
-  color:#667085;
+  color:rgba(255,255,255,0.5);
   line-height:1.7;
 }
 
@@ -334,7 +431,9 @@
 }
   /* ─── MARQUEE ─── */
   .marquee-bar {
-    background: var(--accent);
+    background: #0e4a25;
+    border-top: 1px solid rgba(201,162,39,0.2);
+    border-bottom: 1px solid rgba(201,162,39,0.2);
     padding: 9px 0; overflow: hidden;
   }
   .marquee-track {
@@ -342,28 +441,28 @@
     animation: marquee 35s linear infinite;
   }
   .marquee-track span {
-    font-family: var(--mono); color: rgba(255,255,255,0.65); font-size: 11.5px; padding-right: 80px;
+    font-family: var(--mono); color: rgba(255,255,255,0.6); font-size: 11.5px; padding-right: 80px;
   }
-  .marquee-track span strong { color: var(--white); font-weight: 600; }
+  .marquee-track span strong { color: var(--gold); font-weight: 600; }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   /* ─── SECTION BASE ─── */
   section { padding: 80px 0; }
   .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
   .section-tag {
-    display: inline-block; font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: 1.5px;
-    text-transform: uppercase; color: var(--accent);
+    display: inline-block; font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 1.8px;
+    text-transform: uppercase; color: var(--gold);
     margin-bottom: 12px;
   }
   .section-heading {
-    font-family: var(--serif);
-    font-size: 32px; font-weight: 700; color: var(--ink);
+    font-family: var(--sans);
+    font-size: 32px; font-weight: 700; color: #0b1f3a;
     margin-bottom: 10px; line-height: 1.2;
   }
   .section-sub { font-size: 14.5px; color: var(--ink-muted); max-width: 560px; line-height: 1.75; font-weight: 300; }
   .section-header { text-align: center; margin-bottom: 52px; }
   .section-header .section-sub { margin: 0 auto; }
-  .section-rule { width: 36px; height: 2px; background: var(--accent); margin: 14px auto 0; }
+  .section-rule { width: 36px; height: 2px; background: var(--gold); margin: 14px auto 0; }
   .section-rule.left { margin: 14px 0 0; }
 
   /* ─── DEPOSITS ─── */
@@ -371,26 +470,27 @@
   .deposit-cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--rule-light); border: 1px solid var(--rule-light); }
   .deposit-card {
     background: var(--white); padding: 32px 28px;
-    transition: background .2s;
+    transition: background .2s, box-shadow .2s;
     cursor: pointer;
   }
-  .deposit-card:hover { background: var(--accent-pale); }
+  .deposit-card:hover { background: var(--green-pale); }
   .deposit-icon {
     width: 44px; height: 44px;
     background: var(--paper-warm);
     border: 1px solid var(--rule-light);
     display: flex; align-items: center; justify-content: center;
     font-size: 20px; margin-bottom: 18px;
+    border-radius: 10px;
   }
-  .deposit-card h3 { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+  .deposit-card h3 { font-family: var(--sans); font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
   .deposit-card p { font-size: 13px; color: var(--ink-muted); line-height: 1.65; margin-bottom: 20px; font-weight: 300; }
   .deposit-rate {
     display: inline-flex; align-items: center; gap: 8px;
-    font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--green);
+    font-family: var(--mono); font-size: 12px; font-weight: 600; color: #145f30;
     background: var(--green-pale);
-    padding: 5px 12px;
+    padding: 5px 12px; border-radius: 20px;
   }
-  .rate-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+  .rate-dot { width: 6px; height: 6px; border-radius: 50%; background: #1a7c3e; flex-shrink: 0; }
 
   /* ─── LOANS ─── */
   .loans-section { background: var(--white); }
@@ -404,15 +504,16 @@
   .loan-card:hover { background: var(--paper); }
   .loan-card.wide { grid-column: span 3; }
   .loan-icon {
-    width: 40px; height: 40px; flex-shrink: 0;
-    background: var(--paper-warm);
-    border: 1px solid var(--rule-light);
+    width: 42px; height: 42px; flex-shrink: 0;
+    background: var(--green-pale);
+    border: 1px solid var(--green-soft);
+    border-radius: 10px;
     display: flex; align-items: center; justify-content: center; font-size: 18px;
   }
-  .loan-card h3 { font-size: 14.5px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .loan-card h3 { font-size: 14.5px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
   .loan-card p { font-size: 12.5px; color: var(--ink-muted); line-height: 1.6; margin-bottom: 12px; font-weight: 300; }
   .loan-cta {
-    font-family: var(--mono); font-size: 11.5px; font-weight: 500; color: var(--accent);
+    font-family: var(--mono); font-size: 11.5px; font-weight: 600; color: #1a7c3e;
     text-decoration: none; display: inline-flex; align-items: center; gap: 5px;
     letter-spacing: 0.3px;
   }
@@ -420,70 +521,73 @@
   .loan-cta:hover::after { transform: translateX(4px); }
 
   /* ─── SERVICES ─── */
-  .services { background: var(--ink); position: relative; overflow: hidden; }
+  .services { background: #111827; position: relative; overflow: hidden; }
   .services-inner-rule{
-  position:absolute;
-  inset:0;
-
-  background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-
-  background-size:60px 60px;
-}
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size:60px 60px;
+  }
   .services .section-heading { color: var(--white); }
-  .services .section-tag { color: rgba(255,255,255,0.4); }
-  .services .section-sub { color: rgba(255,255,255,0.4); }
-  .services .section-rule { background: rgba(255,255,255,0.2); }
+  .services .section-tag { color: rgba(201,162,39,0.7); }
+  .services .section-sub { color: rgba(255,255,255,0.45); }
+  .services .section-rule { background: rgba(201,162,39,0.4); }
   .services-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); }
   .service-card{
-  background:#121c2f;
-  border-radius:22px;
-  padding:30px 24px;
-  text-align:left;
-  transition:0.3s;
-  cursor:pointer;
-  border:1px solid rgba(255,255,255,0.05);
-}
+    background: #1c2a3a;
+    border-radius:16px;
+    padding:28px 22px;
+    text-align:left;
+    transition:0.3s;
+    cursor:pointer;
+    border:1px solid rgba(255,255,255,0.06);
+  }
   .service-card:hover{
-  background:#18253d;
-  transform:translateY(-6px);
-  border-color:rgba(255,255,255,0.12);
-}
+    background: #243347;
+    transform:translateY(-5px);
+    border-color:rgba(26,124,62,0.4);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
   .service-icon{
-  font-size:30px;
-  margin-bottom:16px;
-  display:block;
-}
-.service-card p{
-  font-size:13px;
-  color:rgba(255,255,255,0.65);
-  line-height:1.7;
-}
+    font-size:28px;
+    margin-bottom:14px;
+    display:block;
+  }
+  .service-card h4 {
+    font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.92);
+    margin-bottom: 8px;
+  }
+  .service-card p{
+    font-size:13px;
+    color:rgba(255,255,255,0.55);
+    line-height:1.65;
+  }
   /* ─── WHY US ─── */
   .whyus { background: var(--paper); border-top: 1px solid var(--rule-light); }
   .whyus-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
   .whyus-visual {
-    background: var(--accent);
+    background: #0b1f3a;
     padding: 52px 44px; position: relative; overflow: hidden;
+    border-radius: 16px;
   }
   .whyus-visual::after {
     content: 'S';
     position: absolute; right: -20px; bottom: -30px;
     font-family: var(--serif); font-size: 220px; font-weight: 700;
-    color: rgba(255,255,255,0.04); line-height: 1;
+    color: rgba(255,255,255,0.05); line-height: 1;
     pointer-events: none; user-select: none;
   }
-  .whyus-visual-logo { font-family: var(--serif); font-size: 44px; font-weight: 700; color: var(--white); margin-bottom: 14px; }
-  .whyus-visual-name { font-size: 17px; font-weight: 600; color: rgba(255,255,255,0.85); margin-bottom: 6px; }
-  .whyus-visual-reg { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.5px; }
-  .whyus-divider { height: 1px; background: rgba(255,255,255,0.12); margin: 28px 0; }
+  .whyus-visual-logo { font-family: var(--sans); font-size: 40px; font-weight: 800; color: var(--white); margin-bottom: 14px; }
+  .whyus-visual-name { font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.88); margin-bottom: 6px; }
+  .whyus-visual-reg { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.5px; }
+  .whyus-divider { height: 1px; background: rgba(255,255,255,0.15); margin: 28px 0; }
   .whyus-info-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
-  .whyus-info-icon { font-size: 14px; margin-top: 1px; opacity: 0.6; }
-  .whyus-info-text { font-size: 12.5px; color: rgba(255,255,255,0.55); line-height: 1.55; }
-  .whyus-info-text strong { color: rgba(255,255,255,0.82); font-weight: 500; }
+  .whyus-info-icon { font-size: 14px; margin-top: 1px; opacity: 0.65; }
+  .whyus-info-text { font-size: 12.5px; color: rgba(255,255,255,0.6); line-height: 1.55; }
+  .whyus-info-text strong { color: rgba(255,255,255,0.9); font-weight: 600; }
 
-  .whyus-points { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--rule-light); }
+  .whyus-points { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--rule-light); border-radius: 12px; overflow: hidden; }
   .point {
     display: flex; gap: 20px; align-items: flex-start;
     padding: 22px 24px;
@@ -491,15 +595,14 @@
     transition: background .2s;
   }
   .point:last-child { border-bottom: none; }
-  .point:hover { background: var(--accent-pale); }
+  .point:hover { background: var(--green-pale); }
   .point-num {
     font-family: var(--mono);
-    font-size: 11px; font-weight: 600;
-    color: var(--accent);
+    font-size: 11px; font-weight: 700;
+    color: #1a7c3e;
     width: 28px; flex-shrink: 0; margin-top: 2px;
-    opacity: 0.7;
   }
-  .point h4 { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .point h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
   .point p { font-size: 12.5px; color: var(--ink-muted); line-height: 1.6; font-weight: 300; }
 
   /* ─── CHAIRMAN ─── */
@@ -509,55 +612,60 @@
     padding: 52px 52px;
     display: grid; grid-template-columns: auto 1fr; gap: 48px; align-items: flex-start;
     border: 1px solid var(--rule-light);
-    border-left: 4px solid var(--accent);
+    border-left: 4px solid var(--gold);
+    border-radius: 12px;
   }
   .chairman-avatar {
     width: 96px; height: 96px;
-    background: var(--accent);
+    background: #0b1f3a;
+    border: 3px solid var(--gold);
+    border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-family: var(--serif); font-size: 32px; font-weight: 700;
-    color: var(--white); flex-shrink: 0;
+    font-family: var(--sans); font-size: 32px; font-weight: 800;
+    color: white; flex-shrink: 0;
   }
   .chairman-quote {
-    font-family: var(--serif);
-    font-size: 19px; color: var(--ink); line-height: 1.6;
+    font-family: var(--sans);
+    font-size: 18px; color: var(--ink); line-height: 1.65;
     font-style: italic; margin-bottom: 22px;
   }
-  .chairman-name { font-size: 14px; font-weight: 600; color: var(--ink); }
+  .chairman-name { font-size: 14px; font-weight: 700; color: var(--ink); }
   .chairman-title { font-family: var(--mono); font-size: 11.5px; color: var(--ink-muted); margin-top: 3px; }
   .chairman-contact {
     display: inline-flex; align-items: center; gap: 8px;
-    margin-top: 14px; background: var(--accent); color: var(--white);
-    font-family: var(--mono); font-size: 12px; padding: 9px 18px;
-    text-decoration: none; transition: background .18s;
+    margin-top: 14px; background: #1a7c3e; color: white;
+    font-family: var(--mono); font-size: 12px; font-weight: 700; padding: 9px 18px;
+    text-decoration: none; transition: background .18s; border-radius: 6px;
   }
-  .chairman-contact:hover { background: var(--accent-mid); }
+  .chairman-contact:hover { background: #145f30; }
 
   /* ─── CTA BANNER ─── */
   .cta-banner {
-    background: var(--paper-warm);
+    background: linear-gradient(135deg, #f0f4f8 0%, #ffffff 100%);
     padding: 72px 0; text-align: center;
-    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+    border-top: 1px solid #e0e7ef; border-bottom: 1px solid #e0e7ef;
   }
   .cta-banner h2 {
-    font-family: var(--serif);
-    font-size: 32px; font-weight: 700; color: var(--ink); margin-bottom: 12px;
+    font-family: var(--sans);
+    font-size: 34px; font-weight: 800; color: #0b1f3a; margin-bottom: 12px;
   }
   .cta-banner p { font-size: 15px; color: var(--ink-muted); margin-bottom: 32px; font-weight: 300; }
   .cta-actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
   .btn-cta-dark {
-    padding: 12px 32px; background: var(--accent); color: var(--white);
-    font-size: 13.5px; font-weight: 600;
-    text-decoration: none; transition: background .2s;
+    padding: 13px 32px; background: #1a7c3e; color: white;
+    font-size: 14px; font-weight: 700; border: none;
+    text-decoration: none; transition: all .2s; border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(26,124,62,0.3);
   }
-  .btn-cta-dark:hover { background: var(--accent-mid); }
+  .btn-cta-dark:hover { background: #145f30; transform: translateY(-2px); }
   .btn-cta-border {
-    padding: 12px 30px; border: 1px solid var(--rule);
-    color: var(--ink-soft); font-size: 13.5px; font-weight: 400; text-decoration: none; transition: all .2s;
+    padding: 13px 30px; border: 2px solid #1a7c3e;
+    color: #1a7c3e; font-size: 14px; font-weight: 600; background: white;
+    text-decoration: none; transition: all .2s; border-radius: 8px;
   }
-  .btn-cta-border:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-cta-border:hover { background: #1a7c3e; color: white; }
 .branches{
-  background:var(--paper);
+  background:#f8f9fb;
   padding:80px 0;
 }
 
@@ -571,24 +679,34 @@
   background:var(--white);
   padding:32px;
   border:1px solid var(--rule-light);
+  border-top: 3px solid #1a7c3e;
   transition:0.3s;
+  border-radius: 12px;
 }
 
 .branch-card:hover{
   transform:translateY(-5px);
-  box-shadow:var(--shadow);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.10);
 }
 
 .branch-card h3{
   margin-bottom:12px;
+  color: #0b1f3a;
+  font-weight: 700;
 }
 
 .branch-card p{
   margin-bottom:16px;
   color:var(--ink-muted);
 }
+
+.branch-card span {
+  color: #1a7c3e;
+  font-weight: 600;
+  font-size: 13px;
+}
   /* ─── FOOTER ─── */
-  .footer { background: var(--ink); padding: 60px 0 0; }
+  .footer { background: #0f1c2e; padding: 60px 0 0; }
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 52px; border-bottom: 1px solid rgba(255,255,255,0.08); }
   .footer-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
   .footer-logo-circle{
@@ -616,10 +734,10 @@
   .footer-contact-text a { color: rgba(255,255,255,0.55); text-decoration: none; }
   .footer-contact-text a:hover { color: rgba(255,255,255,0.9); }
 
-  .footer-col-title { font-family: var(--mono); font-size: 10.5px; font-weight: 600; color: rgba(255,255,255,0.4); margin-bottom: 18px; text-transform: uppercase; letter-spacing: 1.2px; }
+  .footer-col-title { font-family: var(--mono); font-size: 10.5px; font-weight: 600; color: rgba(255,255,255,0.45); margin-bottom: 18px; text-transform: uppercase; letter-spacing: 1.2px; }
   .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color .18s; }
-  .footer-links a:hover { color: rgba(255,255,255,0.85); }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color .18s; }
+  .footer-links a:hover { color: var(--gold); }
 
   .footer-bottom {
     padding: 20px 0; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
@@ -651,17 +769,25 @@
     .services-grid { grid-template-columns: repeat(2,1fr); }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .whyus-inner { grid-template-columns: 1fr; }
+    .service-navbar { display: none; }
+    .brand-name { font-size: 16px; }
   }
   @media (max-width: 640px) {
-    .topbar-inner { flex-direction: column; gap: 6px; font-size: 10.5px; }
+    .topbar-inner { gap: 4px; font-size: 11.5px; }
+    .topbar-left { gap: 0; }
+    .topbar a { padding: 0 8px; font-size: 11.5px; }
     .hero h1 { font-size: 30px; }
-    nav { display: none; }
     .deposit-cards, .loans-grid, .services-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr; }
     .chairman-inner { grid-template-columns: 1fr; }
     .loan-card.wide { grid-column: span 1; }
     .hero-inner { padding: 52px 24px; }
     .container { padding: 0 24px; }
+    .service-navbar { display: none; }
+    .navbar-inner { padding: 0 16px; gap: 10px; }
+    .btn-outline, .btn-primary { padding: 7px 12px; font-size: 11.5px; }
+    .brand-name { font-size: 13px; }
+    .brand-sub { font-size: 10px; }
   }
   /* ===== MODERN GLOBAL UI FIX ===== */
 
@@ -683,9 +809,9 @@
 .branch-card,
 .point,
 .chairman-inner{
-  border-radius:22px;
+  border-radius:16px;
   border:none !important;
-  box-shadow:0 8px 28px rgba(0,0,0,0.05);
+  box-shadow:0 4px 20px rgba(0,0,0,0.07);
 }
 
 .deposit-cards,
@@ -721,125 +847,162 @@
 }
 
 .section-heading{
-  font-size:42px;
-  font-weight:700;
-  color:#0b1f4d;
+  font-size:40px;
+  font-weight:800;
+  color:#0b1f3a;
 }
 
 .section-sub{
-  font-size:16px;
-  color:#667085;
+  font-size:15.5px;
+  color:#6b8070;
 }
 
 .deposits,
 .branches,
 .whyus{
-  background:#f8fbff;
+  background:#f8f9fb;
 }
 
 .services{
-  background:#0b1220;
+  background:#111827;
   position:relative;
   overflow:hidden;
   padding:100px 0;
 }
 
 .footer{
-  background:#0b1220;
+  background:#0f1c2e;
 }
 
 .cta-banner{
-  background:white;
+  background: linear-gradient(135deg, #f0f4f8 0%, #ffffff 100%);
 }
 
 .point{
-  margin-bottom:18px;
+  margin-bottom:0;
 }
 
 .branch-card:hover,
 .deposit-card:hover,
 .loan-card:hover,
 .service-card:hover{
-  transform:translateY(-6px);
+  transform:translateY(-5px);
 }
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
+<!-- TIER 1: TOP NAV BAR -->
 <div class="topbar">
   <div class="topbar-inner">
     <div class="topbar-left">
-      <div><span class="topbar-label">HQ</span>6-1-22/5, Baptist Church Complex, Hanamkonda – 506001</div>
-      <div class="topbar-divider"></div>
-      <div><span class="topbar-label">HOURS</span>Mon–Sat · 10:00–17:00</div>
+      <a href="#">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#">Careers</a>
+      <a href="#">Tenders</a>
+      <a href="#contact">Contact Us</a>
     </div>
     <div class="topbar-right">
-      <a href="tel:8500647989"><span class="topbar-label">TEL</span>8500647989</a>
-      <div class="topbar-divider"></div>
-      <a href="tel:8500657898">8500657898</a>
-      <div class="topbar-divider"></div>
-      <a href="#">Reg: TG/WGLU/MACS/2024-1/CRDT</a>
+      <a href="#" class="topbar-locate">
+        <span class="topbar-locate-icon">📍</span>
+        Locate Us
+      </a>
     </div>
   </div>
 </div>
 
-<!-- NAVBAR -->
+<!-- TIER 2: GREEN BRAND BANNER -->
 <header class="navbar">
   <div class="navbar-inner">
     <a href="#" class="brand">
       <div class="brand-logo">
-  <img src="srimaanlogo.jpeg" alt="Srimaan Logo">
-</div>
+        <img src="srimaanlogo.jpeg" alt="Srimaan Logo">
+      </div>
       <div class="brand-text">
-        <span class="brand-name">Srimaan CO-Operative Credit Union</span>
-        <span class="brand-sub">Quasi Banking · Hanamkonda</span>
+        <span class="brand-name">Srimaan Co-Operative Credit Union</span>
+        <span class="brand-sub">( Quasi Banking · Hanamkonda, TG – 506001 )</span>
       </div>
     </a>
-    <nav>
-      <a href="#" class="nav-link active">Home</a>
-      <a href="#about" class="nav-link">About</a>
-      <div class="nav-dropdown">
-        <a href="#deposits" class="nav-link">Deposits</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Savings Account</a>
-          <a class="dropdown-item" href="#">Current Account</a>
-          <a class="dropdown-item" href="#">Fixed Deposit</a>
-          <a class="dropdown-item" href="#">Recurring Deposit</a>
-        </div>
-      </div>
-      <div class="nav-dropdown">
-        <a href="#loans" class="nav-link">Loans</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Gold Loan</a>
-          <a class="dropdown-item" href="#">House Mortgage</a>
-          <a class="dropdown-item" href="#">Small Business Loan</a>
-          <a class="dropdown-item" href="#">Vehicle Loan</a>
-          <a class="dropdown-item" href="#">Personal Loan</a>
-          <a class="dropdown-item" href="#">Group Loans</a>
-        </div>
-      </div>
-      <div class="nav-dropdown">
-        <a href="#services" class="nav-link">Services</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Mobile Banking</a>
-          <a class="dropdown-item" href="#">Internet Banking</a>
-          <a class="dropdown-item" href="#">Core Banking</a>
-          <a class="dropdown-item" href="#">RTGS / NEFT / UPI</a>
-          <a class="dropdown-item" href="#">Debit Card</a>
-          <a class="dropdown-item" href="#">Insurance</a>
-        </div>
-      </div>
-      <a href="#branches" class="nav-link">Branches</a>
-      <a href="#contact" class="nav-link">Contact</a>
-      <a href="#" class="nav-link">Know More</a>
-    </nav>
+    <nav></nav>
     <div class="navbar-cta">
-      <a href="#" class="btn-outline">Login</a>
-      <a href="#" class="btn-primary">Open Account</a>
+      <a href="#" class="btn-outline">
+        <span class="btn-icon">👤</span> Staff Login
+      </a>
+      <a href="#" class="btn-primary">
+        <span class="btn-icon">🔒</span> Internet Banking
+      </a>
     </div>
   </div>
 </header>
+
+<!-- TIER 3: DARK GREEN SERVICE NAV BAR -->
+<div class="service-navbar">
+  <div class="service-navbar-inner">
+    <div class="service-nav-links">
+
+      <div class="sn-dropdown">
+        <a href="#loans" class="service-nav-link"><span class="sn-icon">💰</span> Loans</a>
+        <div class="sn-dropdown-menu">
+          <a class="sn-dropdown-item" href="#">Gold Loan</a>
+          <a class="sn-dropdown-item" href="#">House Mortgage Loan</a>
+          <a class="sn-dropdown-item" href="#">Small Business Loan</a>
+          <a class="sn-dropdown-item" href="#">Vehicle Loan</a>
+          <a class="sn-dropdown-item" href="#">Personal Loan</a>
+          <a class="sn-dropdown-item" href="#">Group Loans</a>
+        </div>
+      </div>
+
+      <div class="sn-dropdown">
+        <a href="#deposits" class="service-nav-link"><span class="sn-icon">🏦</span> Deposits</a>
+        <div class="sn-dropdown-menu">
+          <a class="sn-dropdown-item" href="#">Savings Account</a>
+          <a class="sn-dropdown-item" href="#">Current Account</a>
+          <a class="sn-dropdown-item" href="#">Fixed Deposit</a>
+          <a class="sn-dropdown-item" href="#">Recurring Deposit</a>
+        </div>
+      </div>
+
+      <a href="#" class="service-nav-link"><span class="sn-icon">📋</span> KYC</a>
+
+      <a href="#" class="service-nav-link"><span class="sn-icon">🦻</span> Deaf Details</a>
+
+      <div class="sn-dropdown">
+        <a href="#services" class="service-nav-link"><span class="sn-icon">🏛️</span> Services</a>
+        <div class="sn-dropdown-menu">
+          <a class="sn-dropdown-item" href="#">Mobile Banking</a>
+          <a class="sn-dropdown-item" href="#">Internet Banking</a>
+          <a class="sn-dropdown-item" href="#">Core Banking</a>
+          <a class="sn-dropdown-item" href="#">RTGS / NEFT / UPI</a>
+          <a class="sn-dropdown-item" href="#">Debit Card</a>
+          <a class="sn-dropdown-item" href="#">ATM Facility</a>
+          <a class="sn-dropdown-item" href="#">Insurance</a>
+          <a class="sn-dropdown-item" href="#">Safe Deposit Lockers</a>
+        </div>
+      </div>
+
+      <div class="sn-dropdown">
+        <a href="#branches" class="service-nav-link"><span class="sn-icon">📍</span> Our Network</a>
+        <div class="sn-dropdown-menu">
+          <a class="sn-dropdown-item" href="#">Hanamkonda Branch</a>
+          <a class="sn-dropdown-item" href="#">Warangal Branch</a>
+          <a class="sn-dropdown-item" href="#">Kazipet Branch</a>
+        </div>
+      </div>
+
+      <a href="#" class="service-nav-link"><span class="sn-icon">🔔</span> Notifications</a>
+
+      <a href="#" class="service-nav-link"><span class="sn-icon">⚙️</span> CTI</a>
+
+      <a href="#" class="service-nav-link"><span class="sn-icon">🛡️</span> Cyber Security</a>
+
+    </div>
+
+    <div class="sn-search">
+      <input type="text" placeholder="Search for bank services, loans...">
+      <button class="sn-search-btn">🔍</button>
+    </div>
+  </div>
+</div>
 
 
 <!-- HERO -->
